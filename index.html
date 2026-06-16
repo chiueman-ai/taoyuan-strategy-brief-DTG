@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,31 +9,136 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* ── LIGHT THEME (default) ── */
   :root {
-    --bg:        #0b0d12;
-    --bg2:       #0f1219;
-    --bg3:       #141820;
-    --bg4:       #1a2030;
-    --bg5:       #1f2638;
-    --border:    rgba(255,255,255,0.07);
-    --border2:   rgba(255,255,255,0.12);
-    --border3:   rgba(255,255,255,0.18);
-    --blue:      #4a82d8;
-    --blue-dim:  rgba(74,130,216,0.1);
-    --blue-bd:   rgba(74,130,216,0.28);
-    --teal:      #3aab9b;
-    --teal-dim:  rgba(58,171,155,0.1);
-    --teal-bd:   rgba(58,171,155,0.28);
-    --amber:     #c8a050;
-    --amber-dim: rgba(200,160,80,0.1);
-    --amber-bd:  rgba(200,160,80,0.28);
-    --purple:    #8b6fd4;
-    --purple-dim:rgba(139,111,212,0.1);
-    --purple-bd: rgba(139,111,212,0.28);
-    --white:     #e8e5de;
-    --muted:     rgba(232,229,222,0.42);
-    --soft:      rgba(232,229,222,0.65);
-    --soft2:     rgba(232,229,222,0.78);
+    --bg:         #ffffff;
+    --bg2:        #f5f6f8;
+    --bg3:        #eef0f4;
+    --bg4:        #e4e8ef;
+    --bg5:        #d8dde8;
+    --border:     rgba(0,0,0,0.06);
+    --border2:    rgba(0,0,0,0.11);
+    --border3:    rgba(0,0,0,0.18);
+    --blue:       #1a5ec8;
+    --blue-dim:   rgba(26,94,200,0.08);
+    --blue-bd:    rgba(26,94,200,0.22);
+    --teal:       #0e8a78;
+    --teal-dim:   rgba(14,138,120,0.08);
+    --teal-bd:    rgba(14,138,120,0.22);
+    --amber:      #a06010;
+    --amber-dim:  rgba(160,96,16,0.08);
+    --amber-bd:   rgba(160,96,16,0.22);
+    --purple:     #6b4db8;
+    --purple-dim: rgba(107,77,184,0.08);
+    --purple-bd:  rgba(107,77,184,0.22);
+    --white:      #111318;
+    --muted:      rgba(17,19,24,0.38);
+    --soft:       rgba(17,19,24,0.62);
+    --soft2:      rgba(17,19,24,0.80);
+    /* eval dots */
+    --eval-hi-c:  #0e8a78;
+    --eval-mid-c: #a06010;
+    --eval-lo-c:  rgba(17,19,24,0.28);
+    /* toggle */
+    --toggle-bg:       #e4e8ef;
+    --toggle-border:   rgba(0,0,0,0.14);
+    --toggle-icon-bg:  #1a5ec8;
+    --toggle-text:     rgba(17,19,24,0.55);
+  }
+
+  /* ── DARK THEME ── */
+  :root[data-theme="dark"] {
+    --bg:         #0b0d12;
+    --bg2:        #0f1219;
+    --bg3:        #141820;
+    --bg4:        #1a2030;
+    --bg5:        #1f2638;
+    --border:     rgba(255,255,255,0.07);
+    --border2:    rgba(255,255,255,0.12);
+    --border3:    rgba(255,255,255,0.18);
+    --blue:       #4a82d8;
+    --blue-dim:   rgba(74,130,216,0.1);
+    --blue-bd:    rgba(74,130,216,0.28);
+    --teal:       #3aab9b;
+    --teal-dim:   rgba(58,171,155,0.1);
+    --teal-bd:    rgba(58,171,155,0.28);
+    --amber:      #c8a050;
+    --amber-dim:  rgba(200,160,80,0.1);
+    --amber-bd:   rgba(200,160,80,0.28);
+    --purple:     #8b6fd4;
+    --purple-dim: rgba(139,111,212,0.1);
+    --purple-bd:  rgba(139,111,212,0.28);
+    --white:      #e8e5de;
+    --muted:      rgba(232,229,222,0.42);
+    --soft:       rgba(232,229,222,0.65);
+    --soft2:      rgba(232,229,222,0.78);
+    --eval-hi-c:  #3aab9b;
+    --eval-mid-c: #c8a050;
+    --eval-lo-c:  rgba(232,229,222,0.28);
+    --toggle-bg:       #1a2030;
+    --toggle-border:   rgba(255,255,255,0.12);
+    --toggle-icon-bg:  #4a82d8;
+    --toggle-text:     rgba(232,229,222,0.5);
+  }
+
+  /* ── THEME TOGGLE BUTTON ── */
+  #theme-toggle {
+    position: fixed;
+    top: 1.4rem;
+    right: 2.8rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--toggle-bg);
+    border: 1px solid var(--toggle-border);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem 0.35rem 0.45rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    user-select: none;
+  }
+
+  #theme-toggle:hover { border-color: var(--blue-bd); }
+
+  .toggle-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--toggle-icon-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .toggle-icon svg {
+    width: 12px; height: 12px;
+    fill: #fff;
+  }
+
+  .toggle-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: var(--toggle-text);
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  /* fix eval dot colors to use CSS vars */
+  .eval-hi  { background: var(--eval-hi-c) !important; }
+  .eval-mid { background: var(--eval-mid-c) !important; }
+  .eval-lo  { background: var(--eval-lo-c) !important; }
+
+  /* ── TRANSITIONS for smooth switch ── */
+  body, .slide, .card, .field-card, .path-card, .foot,
+  .big-q, .rec-block, .venn-col, .unique-item, .kw,
+  .q-item, .mx-head-row, .mx-data-row, .mx-eval-row,
+  .tag, .dot, h1, h2, .lead, .body-text, .card-title,
+  .card-body, .card-label, .sep {
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
   }
 
   html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
@@ -619,6 +724,17 @@
 </head>
 <body>
 
+<!-- THEME TOGGLE -->
+<button id="theme-toggle" aria-label="切換深色/淺色模式" title="切換配色">
+  <span class="toggle-icon">
+    <!-- sun icon (shown in dark mode) / moon icon (shown in light mode) -->
+    <svg id="toggle-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path id="toggle-path" d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+    </svg>
+  </span>
+  <span class="toggle-label" id="toggle-label">Light</span>
+</button>
+
 <nav id="nav">
   <div class="dot active" data-idx="0" title="討論定位"></div>
   <div class="dot" data-idx="1" title="A-Top 目標"></div>
@@ -719,6 +835,9 @@
     桃園的價值，不一定在於帶來多少 GPU 使用量。而在於是否能成為 A-Top 第一個可複製的城市合作樣板——這個問題值得在今天先討論清楚。
   </div>
 </section>
+
+<!-- S4: 桃園市府關切 -->
+<section class="slide" id="s4-gov">
   <span class="pg">04 / 10 &nbsp;·&nbsp; 桃園市府關切</span>
   <div class="tag">初步判斷</div>
   <h2>桃園市府需要的是<br>可被說明的政策成果</h2>
@@ -1058,6 +1177,7 @@
 </section>
 
 <script>
+  /* ── NAV DOTS ── */
   const slides = document.querySelectorAll('.slide');
   const dots   = document.querySelectorAll('.dot');
 
@@ -1077,6 +1197,35 @@
   }, { threshold: 0.5 });
 
   slides.forEach(s => io.observe(s));
+
+  /* ── THEME TOGGLE ── */
+  const root    = document.documentElement;
+  const btn     = document.getElementById('theme-toggle');
+  const label   = document.getElementById('toggle-label');
+  const svgPath = document.getElementById('toggle-path');
+
+  // sun path (for light mode indicator) / moon path (for dark mode indicator)
+  const moonPath = 'M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z';
+  const sunPath  = 'M12 3v1m0 16v1M4.22 4.22l.7.7m12.16 12.16.7.7M3 12h1m16 0h1M4.92 19.07l.7-.7M18.36 5.64l.7-.7M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z';
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    if (theme === 'light') {
+      label.textContent = 'Light';
+      svgPath.setAttribute('d', moonPath);   // moon = "switch to dark"
+    } else {
+      label.textContent = 'Dark';
+      svgPath.setAttribute('d', sunPath);    // sun = "switch to light"
+    }
+  }
+
+  // Default: light
+  applyTheme('light');
+
+  btn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    applyTheme(current === 'light' ? 'dark' : 'light');
+  });
 </script>
 </body>
 </html>
