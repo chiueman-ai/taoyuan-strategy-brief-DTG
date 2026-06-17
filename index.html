@@ -1,1231 +1,1309 @@
 <!DOCTYPE html>
-<html lang="zh-TW" data-theme="light">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃園市府合作議題深度收斂導讀 v4</title>
+<title>桃園城市發展計畫｜以 AI 產業內容支撐都市發展導讀</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap');
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  /* ── LIGHT THEME (default) ── */
   :root {
-    --bg:         #ffffff;
-    --bg2:        #f5f6f8;
-    --bg3:        #eef0f4;
-    --bg4:        #e4e8ef;
-    --bg5:        #d8dde8;
-    --border:     rgba(0,0,0,0.06);
-    --border2:    rgba(0,0,0,0.11);
-    --border3:    rgba(0,0,0,0.18);
-    --blue:       #1a5ec8;
-    --blue-dim:   rgba(26,94,200,0.08);
-    --blue-bd:    rgba(26,94,200,0.22);
-    --teal:       #0e8a78;
-    --teal-dim:   rgba(14,138,120,0.08);
-    --teal-bd:    rgba(14,138,120,0.22);
-    --amber:      #a06010;
-    --amber-dim:  rgba(160,96,16,0.08);
-    --amber-bd:   rgba(160,96,16,0.22);
-    --purple:     #6b4db8;
-    --purple-dim: rgba(107,77,184,0.08);
-    --purple-bd:  rgba(107,77,184,0.22);
-    --white:      #111318;
-    --muted:      rgba(17,19,24,0.38);
-    --soft:       rgba(17,19,24,0.62);
-    --soft2:      rgba(17,19,24,0.80);
-    /* eval dots */
-    --eval-hi-c:  #0e8a78;
-    --eval-mid-c: #a06010;
-    --eval-lo-c:  rgba(17,19,24,0.28);
-    /* toggle */
-    --toggle-bg:       #e4e8ef;
-    --toggle-border:   rgba(0,0,0,0.14);
-    --toggle-icon-bg:  #1a5ec8;
-    --toggle-text:     rgba(17,19,24,0.55);
+    --bg-page:    #f1f0ed;
+    --bg-card:    #ffffff;
+    --bg-l1:      #fafafa;
+    --bg-l2:      #f4f4f2;
+
+    --bd:         #d8d7d2;
+    --bd-strong:  #b7b6b0;
+
+    --c-black:    #1a1a1c;
+    --c-titanium: #6e6e6b;
+    --c-gold:     #8a7240;
+    --c-line:     #b9ab7e;
+    --c-gov:      #2e4a66;
+    --c-gov-dim:  #eef1f4;
+    --c-atop:     #6e5a28;
+    --c-atop-dim: #f6f2e8;
+
+    --tx-primary:   #1a1a1c;
+    --tx-secondary: #4f4f4d;
+    --tx-muted:     #8a8987;
   }
 
-  /* ── DARK THEME ── */
-  :root[data-theme="dark"] {
-    --bg:         #0b0d12;
-    --bg2:        #0f1219;
-    --bg3:        #141820;
-    --bg4:        #1a2030;
-    --bg5:        #1f2638;
-    --border:     rgba(255,255,255,0.07);
-    --border2:    rgba(255,255,255,0.12);
-    --border3:    rgba(255,255,255,0.18);
-    --blue:       #4a82d8;
-    --blue-dim:   rgba(74,130,216,0.1);
-    --blue-bd:    rgba(74,130,216,0.28);
-    --teal:       #3aab9b;
-    --teal-dim:   rgba(58,171,155,0.1);
-    --teal-bd:    rgba(58,171,155,0.28);
-    --amber:      #c8a050;
-    --amber-dim:  rgba(200,160,80,0.1);
-    --amber-bd:   rgba(200,160,80,0.28);
-    --purple:     #8b6fd4;
-    --purple-dim: rgba(139,111,212,0.1);
-    --purple-bd:  rgba(139,111,212,0.28);
-    --white:      #e8e5de;
-    --muted:      rgba(232,229,222,0.42);
-    --soft:       rgba(232,229,222,0.65);
-    --soft2:      rgba(232,229,222,0.78);
-    --eval-hi-c:  #3aab9b;
-    --eval-mid-c: #c8a050;
-    --eval-lo-c:  rgba(232,229,222,0.28);
-    --toggle-bg:       #1a2030;
-    --toggle-border:   rgba(255,255,255,0.12);
-    --toggle-icon-bg:  #4a82d8;
-    --toggle-text:     rgba(232,229,222,0.5);
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ════════ NORMAL SCROLLING PAGE — NO TRAPPED VIEWPORT ════════ */
+  html, body {
+    width: 100%;
+    overflow-y: auto;
+    background: var(--bg-page);
+    font-family: "Helvetica Neue", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif;
+    color: var(--tx-primary);
   }
 
-  /* ── THEME TOGGLE BUTTON ── */
-  #theme-toggle {
-    position: fixed;
-    top: 1.4rem;
-    right: 2.8rem;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--toggle-bg);
-    border: 1px solid var(--toggle-border);
-    border-radius: 999px;
-    padding: 0.35rem 0.75rem 0.35rem 0.45rem;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
-    user-select: none;
+  .page {
+    width: min(94vw, 1280px);
+    margin: 0 auto;
+    padding: 48px 0 96px;
   }
 
-  #theme-toggle:hover { border-color: var(--blue-bd); }
+  /* ════════ HEADER ════════ */
+  .masthead { text-align: center; margin-bottom: 52px; }
 
-  .toggle-icon {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--toggle-icon-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: background 0.2s;
-  }
-
-  .toggle-icon svg {
-    width: 12px; height: 12px;
-    fill: #fff;
-  }
-
-  .toggle-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    font-weight: 600;
-    color: var(--toggle-text);
-    text-transform: uppercase;
-    white-space: nowrap;
-    transition: color 0.2s;
-  }
-
-  /* fix eval dot colors to use CSS vars */
-  .eval-hi  { background: var(--eval-hi-c) !important; }
-  .eval-mid { background: var(--eval-mid-c) !important; }
-  .eval-lo  { background: var(--eval-lo-c) !important; }
-
-  /* ── TRANSITIONS for smooth switch ── */
-  body, .slide, .card, .field-card, .path-card, .foot,
-  .big-q, .rec-block, .venn-col, .unique-item, .kw,
-  .q-item, .mx-head-row, .mx-data-row, .mx-eval-row,
-  .tag, .dot, h1, h2, .lead, .body-text, .card-title,
-  .card-body, .card-label, .sep {
-    transition: background 0.25s, color 0.25s, border-color 0.25s;
-  }
-
-  html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
-
-  body {
-    font-family: 'Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', sans-serif;
-    background: var(--bg);
-    color: var(--white);
-    overflow-x: hidden;
-    font-size: 16px;
-  }
-
-  .slide {
-    min-height: 100vh;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5vh 7vw 4vh;
-    position: relative;
-    border-top: 1px solid var(--border);
-  }
-  .slide:first-child { border-top: none; }
-
-  .pg {
-    position: absolute;
-    top: 2.5vh;
-    left: 7vw;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    font-weight: 300;
-  }
-
-  /* NAV */
-  #nav {
-    position: fixed;
-    right: 1.6rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    z-index: 999;
-  }
-  .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.16);
-    cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-  .dot.active { background: var(--blue); border-color: var(--blue); transform: scale(1.5); }
-  .dot:hover  { background: rgba(255,255,255,0.4); }
-
-  /* TYPE SYSTEM */
-  .tag {
-    display: inline-block;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--blue);
-    background: var(--blue-dim);
-    border: 1px solid var(--blue-bd);
-    border-radius: 3px;
-    padding: 0.25rem 0.65rem;
-    margin-bottom: 1.1rem;
-  }
-
-  h1 {
-    font-size: clamp(2rem, 4.2vw, 3.4rem);
+  .main-title {
+    font-size: clamp(24px, 2.4vw, 32px);
     font-weight: 700;
-    line-height: 1.13;
-    letter-spacing: -0.02em;
-    color: var(--white);
-  }
-
-  h2 {
-    font-size: clamp(1.45rem, 3vw, 2.3rem);
-    font-weight: 700;
-    line-height: 1.18;
-    letter-spacing: -0.01em;
-    color: var(--white);
-  }
-
-  .sep {
-    width: 2rem; height: 1.5px;
-    background: var(--border3);
-    margin: 1.2rem 0 1.4rem;
-  }
-
-  .lead {
-    font-size: clamp(0.9rem, 1.5vw, 1.08rem);
-    color: var(--soft);
-    line-height: 1.8;
-    max-width: 62ch;
-    font-weight: 300;
-  }
-
-  .body-text {
-    font-size: clamp(0.84rem, 1.3vw, 0.98rem);
-    color: var(--soft);
-    line-height: 1.75;
-    font-weight: 300;
-  }
-
-  /* CARDS */
-  .card-grid {
-    display: grid;
-    gap: 0.8rem;
-    margin: 1.5rem 0 1rem;
-  }
-  .g2 { grid-template-columns: repeat(2, 1fr); }
-  .g3 { grid-template-columns: repeat(3, 1fr); }
-
-  .card {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 1.2rem 1.4rem;
-    transition: border-color 0.18s;
-  }
-  .card:hover { border-color: var(--border3); }
-
-  .card-label {
-    font-size: 0.58rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-    margin-bottom: 0.45rem;
-  }
-
-  .card-title {
-    font-size: clamp(0.92rem, 1.5vw, 1.06rem);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.45rem;
+    letter-spacing: 0.005em;
+    color: var(--c-black);
     line-height: 1.3;
   }
 
-  .card-body {
-    font-size: clamp(0.78rem, 1.2vw, 0.88rem);
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* ACCENT CARDS */
-  .card-blue  { border-left: 3px solid var(--blue); }
-  .card-teal  { border-left: 3px solid var(--teal); }
-  .card-amber { border-left: 3px solid var(--amber); }
-  .card-purple{ border-left: 3px solid var(--purple); }
-
-  /* FOOT NOTE */
-  .foot {
-    margin-top: 0.8rem;
-    padding: 0.9rem 1.3rem;
-    background: var(--bg4);
-    border-left: 2px solid var(--border3);
-    border-radius: 0 6px 6px 0;
-    font-size: clamp(0.78rem, 1.2vw, 0.9rem);
-    color: var(--soft);
-    line-height: 1.7;
-    max-width: 720px;
-  }
-  .foot strong { color: var(--white); font-weight: 600; }
-  .foot.blue-accent  { border-left-color: var(--blue); }
-  .foot.teal-accent  { border-left-color: var(--teal); }
-  .foot.amber-accent { border-left-color: var(--amber); }
-
-  /* QUESTIONS LIST (S1) */
-  .q-list { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1.8rem; max-width: 500px; }
-  .q-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 7px;
-    padding: 0.85rem 1.3rem;
-    font-size: clamp(0.9rem, 1.45vw, 1.02rem);
-    color: var(--soft2);
-  }
-  .q-n { font-size: 0.62rem; letter-spacing: 0.12em; color: var(--blue); font-weight: 700; min-width: 2rem; }
-
-  .bottom-line {
-    margin-top: 1.4rem;
-    font-size: clamp(0.8rem, 1.25vw, 0.92rem);
-    color: var(--muted);
-    font-style: italic;
-    max-width: 58ch;
-  }
-
-  /* KW TAGS (S5) */
-  .kw-row { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1.5rem 0 1.2rem; }
-  .kw {
-    background: var(--teal-dim);
-    border: 1px solid var(--teal-bd);
-    border-radius: 5px;
-    padding: 0.55rem 1rem;
-    font-size: clamp(0.88rem, 1.4vw, 1rem);
-    font-weight: 600;
-    color: var(--white);
-  }
-
-  /* THREE-WAY VENN (S6) */
-  .venn-wrap {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 0.8rem;
-    align-items: center;
-    margin: 1.6rem 0 1rem;
-    max-width: 820px;
-  }
-
-  .venn-col {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 10px;
-    padding: 1.1rem 1.3rem;
-  }
-
-  .venn-col-title {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 0.8rem;
-  }
-
-  .venn-item {
-    font-size: clamp(0.78rem, 1.15vw, 0.86rem);
-    color: var(--soft);
-    line-height: 1.6;
-    padding: 0.25rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .venn-item:last-child { border-bottom: none; }
-
-  .venn-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .venn-arrow { font-size: 1.1rem; color: var(--border3); line-height: 1; }
-
-  .venn-core {
-    background: linear-gradient(135deg, var(--blue-dim), var(--teal-dim));
-    border: 1px solid var(--blue-bd);
-    border-radius: 50%;
-    width: 110px; height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.4;
-    padding: 0.5rem;
-  }
-
-  /* MATRIX (S7) */
-  .matrix { margin: 1.4rem 0 0.8rem; max-width: 860px; }
-
-  .mx-head-row, .mx-data-row {
-    display: grid;
-    grid-template-columns: 7rem 1fr 1fr 1fr 5.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mx-head-row { background: var(--bg4); }
-
-  .mx-cell {
-    padding: 0.8rem 0.9rem;
-    font-size: clamp(0.74rem, 1.1vw, 0.84rem);
-    line-height: 1.6;
-    color: var(--soft);
-    border-right: 1px solid var(--border);
-  }
-  .mx-cell:last-child { border-right: none; }
-  .mx-cell.head {
-    font-size: 0.58rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-  }
-
-  .mx-label {
-    font-weight: 700;
-    color: var(--white);
-    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-  .mx-sub { font-size: 0.65rem; font-weight: 400; color: var(--muted); }
-
-  .mx-data-row:nth-child(2) .mx-label { color: var(--blue); }
-  .mx-data-row:nth-child(3) .mx-label { color: var(--teal); }
-  .mx-data-row:nth-child(4) .mx-label { color: #e08060; }
-  .mx-data-row:nth-child(5) .mx-label { color: var(--amber); }
-
-  .priority-pill {
+  .main-subtag {
     display: inline-block;
-    font-size: 0.62rem;
-    font-weight: 600;
-    border-radius: 3px;
-    padding: 0.2rem 0.5rem;
-    letter-spacing: 0.06em;
-  }
-  .pill-short  { background: var(--blue-dim);   color: var(--blue);   border: 1px solid var(--blue-bd); }
-  .pill-mid    { background: var(--teal-dim);   color: var(--teal);   border: 1px solid var(--teal-bd); }
-  .pill-long   { background: var(--amber-dim);  color: var(--amber);  border: 1px solid var(--amber-bd); }
-  .pill-both   { background: var(--purple-dim); color: var(--purple); border: 1px solid var(--purple-bd); }
-
-  /* S8 QUESTION CARDS */
-  .big-q-list { display: flex; flex-direction: column; gap: 0.8rem; margin: 1.5rem 0 1rem; max-width: 720px; }
-
-  .big-q {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 9px;
-    padding: 1.1rem 1.4rem;
-  }
-
-  .big-q-head {
-    display: flex;
-    align-items: baseline;
-    gap: 0.9rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .big-q-n {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--blue);
+    margin-top: 14px;
+    font-size: 13px;
     font-weight: 700;
-    flex-shrink: 0;
+    letter-spacing: 0.1em;
+    color: var(--bg-card);
+    background: var(--c-black);
+    padding: 6px 16px;
+    border-radius: 3px;
   }
 
-  .big-q-title {
-    font-size: clamp(0.9rem, 1.45vw, 1.02rem);
-    font-weight: 600;
-    color: var(--white);
-    line-height: 1.35;
-  }
-
-  .option-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding-left: 2.2rem;
-  }
-
-  .opt {
-    background: var(--bg4);
-    border: 1px solid var(--border2);
-    border-radius: 5px;
-    padding: 0.3rem 0.75rem;
-    font-size: clamp(0.74rem, 1.1vw, 0.82rem);
-    color: var(--muted);
+  .main-desc {
+    margin: 18px auto 0;
+    max-width: 760px;
+    font-size: 15.5px;
     font-weight: 400;
-  }
-
-  /* CLOSING REC */
-  .rec-block {
-    margin-top: 0.8rem;
-    padding: 1rem 1.4rem;
-    background: var(--bg4);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    max-width: 720px;
-  }
-
-  .rec-block .rec-title {
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--teal);
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-  }
-
-  .rec-block p {
-    font-size: clamp(0.82rem, 1.3vw, 0.94rem);
-    color: var(--soft);
+    color: var(--tx-secondary);
     line-height: 1.75;
   }
 
-  /* FIELD GRID (S4) */
-  .field-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    margin: 1.4rem 0 0.8rem;
-    max-width: 820px;
+  /* ════════ SECTION WRAPPER ════════ */
+  section.block {
+    margin-bottom: 52px;
   }
+  section.block:last-of-type { margin-bottom: 0; }
 
-  .field-card {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 1.1rem 1.2rem;
-    transition: border-color 0.18s;
-  }
-  .field-card:hover { border-color: var(--border3); }
-
-  .field-icon { font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
-  .field-name {
-    font-size: clamp(0.9rem, 1.4vw, 1rem);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-  }
-  .field-why {
-    font-size: clamp(0.74rem, 1.1vw, 0.82rem);
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* PATH COMPARE (new S3 & new S7) */
-  .path-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.85rem;
-    margin: 1.5rem 0 0.9rem;
-    max-width: 820px;
-  }
-
-  .path-card {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 10px;
-    padding: 1.3rem 1.3rem 1.1rem;
+  .section-title-row {
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
   }
-
-  .path-badge {
-    font-size: 0.58rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+  .section-tag {
+    font-size: 12px;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.14em;
+    color: var(--bg-card);
+    background: var(--c-black);
+    padding: 5px 14px;
+    border-radius: 3px;
+    white-space: nowrap;
   }
-
-  .path-title {
-    font-size: clamp(1rem, 1.6vw, 1.15rem);
+  .section-title {
+    font-size: 20px;
     font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.6rem;
-    line-height: 1.2;
+    color: var(--c-black);
+    white-space: nowrap;
+  }
+  .section-rule { flex: 1; height: 1px; background: var(--bd); }
+  .section-lead {
+    font-size: 14.5px;
+    color: var(--tx-secondary);
+    line-height: 1.7;
+    margin: -6px 0 20px;
+    max-width: 880px;
   }
 
-  .path-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-bottom: 0.8rem;
+  /* ════════ STARTING POINT BOX ════════ */
+  .start-wrap { display: flex; justify-content: center; }
+  .start-box {
+    width: 100%;
+    max-width: 760px;
+    background: var(--bg-l1);
+    border: 1.5px solid var(--bd-strong);
+    border-radius: 6px;
+    padding: 22px 32px 24px;
+    text-align: center;
   }
-
-  .path-tag {
-    background: var(--bg4);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 0.18rem 0.5rem;
-    font-size: 0.7rem;
-    color: var(--muted);
+  .start-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--c-gold);
+    border: 1px solid var(--c-line);
+    border-radius: 3px;
+    padding: 3px 12px;
+    margin-bottom: 10px;
   }
-
-  .path-pros, .path-cons {
-    font-size: clamp(0.76rem, 1.15vw, 0.84rem);
+  .start-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--c-black);
+    line-height: 1.4;
+  }
+  .start-read {
+    margin-top: 9px;
+    font-size: 14.5px;
+    font-weight: 400;
+    color: var(--tx-secondary);
     line-height: 1.6;
-    padding: 0.5rem 0;
-    border-top: 1px solid var(--border);
   }
 
-  .path-pros-label, .path-cons-label {
-    font-size: 0.58rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 0.2rem;
-  }
-
-  .path-pros-label { color: var(--teal); }
-  .path-cons-label { color: var(--muted); }
-
-  .path-pros-text { color: var(--soft); }
-  .path-cons-text { color: var(--muted); }
-
-  /* UNIQUENESS CHECKLIST */
-  .unique-grid {
+  /* ════════ FOUNDATION GRID (城市發展條件) ════════ */
+  .found-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.65rem;
-    margin: 1.3rem 0 0.8rem;
-    max-width: 820px;
+    gap: 14px;
   }
-
-  .unique-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.7rem;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 7px;
-    padding: 0.85rem 1rem;
+  .found-box {
+    background: var(--bg-l2);
+    border: 1px solid var(--bd);
+    border-radius: 5px;
+    padding: 16px 14px 15px;
+    text-align: center;
   }
-
-  .unique-check {
-    color: var(--teal);
-    font-size: 0.85rem;
-    margin-top: 0.1rem;
-    flex-shrink: 0;
+  .found-title { font-size: 15.5px; font-weight: 700; color: var(--c-black); }
+  .found-sub {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--tx-secondary);
+    line-height: 1.5;
   }
-
-  .unique-text {
-    font-size: clamp(0.82rem, 1.3vw, 0.92rem);
-    font-weight: 600;
-    color: var(--white);
-    line-height: 1.35;
+  .found-statement {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--tx-secondary);
+    line-height: 1.7;
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
   }
+  .found-statement strong { color: var(--c-gold); font-weight: 700; }
 
-  .unique-sub {
-    font-size: clamp(0.72rem, 1.05vw, 0.78rem);
-    color: var(--muted);
-    font-weight: 300;
-    margin-top: 0.2rem;
+  /* ════════ WHY NOW (為什麼是現在) ════════ */
+  .whynow-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .whynow-item {
+    text-align: center;
+    padding: 4px 6px;
+  }
+  .whynow-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--c-black);
+  }
+  .whynow-sub {
+    margin-top: 4px;
+    font-size: 12.5px;
+    color: var(--tx-secondary);
     line-height: 1.5;
   }
 
-  /* ENHANCED MATRIX with eval dimensions */
-  .mx-eval-row {
-    display: grid;
-    grid-template-columns: 7rem 1fr 1fr 1fr 5.5rem;
-    background: var(--bg5);
-    border-bottom: 1px solid var(--border);
+  /* ════════ URBAN BUREAU PERSPECTIVE (都市發展局視角) ════════ */
+  .ubureau-box {
+    background: var(--bg-card);
+    border: 1.5px solid var(--c-gold);
+    border-radius: 6px;
+    padding: 26px 30px 22px;
   }
+  .ubureau-list { display: flex; flex-direction: column; }
+  .ubureau-item {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--bd);
+  }
+  .ubureau-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .ubureau-item:first-child { padding-top: 0; }
 
-  .mx-eval-cell {
-    padding: 0.55rem 0.9rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-    border-right: 1px solid var(--border);
+  .ubureau-num {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--bg-card);
+    background: var(--c-gold);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ubureau-q {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--c-black);
     line-height: 1.4;
   }
-  .mx-eval-cell:last-child { border-right: none; }
-
-  .eval-dot {
-    display: inline-block;
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    margin-right: 3px;
-    vertical-align: middle;
+  .ubureau-a {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--tx-secondary);
+    line-height: 1.65;
   }
-  .eval-hi  { background: var(--teal); }
-  .eval-mid { background: var(--amber); }
-  .eval-lo  { background: var(--muted); }
 
-  @media (max-width: 700px) {
-    .path-grid { grid-template-columns: 1fr; }
-    .unique-grid { grid-template-columns: repeat(2, 1fr); }
-    .g2, .g3 { grid-template-columns: 1fr; }
-    .field-grid { grid-template-columns: repeat(2, 1fr); }
-    .venn-wrap { grid-template-columns: 1fr; }
-    .venn-center { flex-direction: row; }
-    .venn-arrow { transform: rotate(90deg); }
-    .mx-head-row, .mx-data-row { grid-template-columns: 5rem 1fr 1fr 1fr 4rem; }
-    #nav { right: 0.7rem; }
+  /* ════════ RESOURCES TWO-COLUMN ════════ */
+  .res-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .res-col {
+    border-radius: 6px;
+    padding: 18px 22px 20px;
+    border: 1px solid var(--bd);
+  }
+  .res-gov  { background: var(--c-gov-dim); }
+  .res-atop { background: var(--c-atop-dim); }
+
+  .res-col-header {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--bd-strong);
+  }
+  .res-gov  .res-col-header { color: var(--c-gov); }
+  .res-atop .res-col-header { color: var(--c-atop); }
+
+  .res-item {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--tx-primary);
+    line-height: 1.65;
+    padding: 6px 0;
+  }
+  .res-item strong { font-weight: 700; }
+  .res-gov  .res-item strong { color: var(--c-gov); }
+  .res-atop .res-item strong { color: var(--c-atop); }
+
+  /* ════════ POSITIONING DIAGRAM (AAM / 睿亞在桃園城市發展中的定位) ════════ */
+  .pos-diagram { display: flex; flex-direction: column; align-items: center; }
+
+  .pos-node {
+    background: var(--bg-card);
+    border: 1.5px solid var(--bd-strong);
+    border-radius: 6px;
+    padding: 12px 28px;
+    text-align: center;
+  }
+  .pos-node-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--c-black);
+  }
+  .pos-node-sub {
+    margin-top: 3px;
+    font-size: 12px;
+    color: var(--tx-muted);
+  }
+
+  .pos-vline {
+    width: 1.5px;
+    height: 22px;
+    background: var(--c-line);
+  }
+
+  .pos-hub {
+    width: 100%;
+    max-width: 640px;
+    background: var(--c-black);
+    border-radius: 8px;
+    padding: 16px 30px 17px;
+    text-align: center;
+  }
+  .pos-hub-label {
+    font-size: 17.5px;
+    font-weight: 700;
+    color: #f4f3ef;
+  }
+  .pos-hub-sub {
+    margin-top: 4px;
+    font-size: 12.5px;
+    color: var(--c-line);
+    line-height: 1.5;
+  }
+
+  .pos-fan {
+    position: relative;
+    height: 22px;
+    width: 100%;
+    max-width: 760px;
+  }
+  .pos-fan::before {
+    content: '';
+    position: absolute;
+    top: 0; height: 1.5px;
+    left: 16.6%; right: 16.6%;
+    background: var(--c-line);
+  }
+  .pos-fan-drops {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 100%;
+  }
+  .pos-fan-drops .drop { width: 1.5px; height: 100%; background: var(--c-line); margin: 0 auto; }
+
+  .pos-row3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 760px;
+  }
+  .pos-row3 .pos-node { width: 100%; }
+
+  .pos-converge {
+    position: relative;
+    height: 22px;
+    width: 100%;
+    max-width: 760px;
+  }
+  .pos-converge::before {
+    content: '';
+    position: absolute;
+    top: 0; height: 1.5px;
+    left: 16.6%; right: 16.6%;
+    background: var(--c-line);
+  }
+  .pos-converge-drops {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 100%;
+  }
+  .pos-converge-drops .drop { width: 1.5px; height: 100%; background: var(--c-line); margin: 0 auto; }
+
+  .pos-converge-vline {
+    width: 1.5px;
+    height: 22px;
+    background: var(--c-line);
+    margin: 0 auto;
+  }
+
+  .pos-statement {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--tx-secondary);
+    line-height: 1.7;
+    max-width: 820px;
+  }
+  .pos-statement strong { color: var(--c-gold); font-weight: 700; }
+
+  /* ════════ DECISION FOCUS (建議優先啟動議題) ════════ */
+  .decision-box {
+    background: var(--c-black);
+    border-radius: 8px;
+    padding: 30px 36px 28px;
+    text-align: center;
+  }
+  .decision-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--c-line);
+    margin-bottom: 10px;
+  }
+  .decision-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #f4f3ef;
+    line-height: 1.3;
+  }
+  .decision-reasons {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  .decision-reason {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 14.5px;
+    color: #f4f3ef;
+    line-height: 1.5;
+  }
+  .decision-reason:last-child { border-bottom: none; padding-bottom: 0; }
+  .decision-reason-num {
+    font-weight: 700;
+    color: var(--c-line);
+  }
+
+  /* ════════ POLICY TOOLS (目標→工具) ════════ */
+  .toolmap-list { display: flex; flex-direction: column; gap: 12px; }
+  .toolmap-row {
+    display: grid;
+    grid-template-columns: 1fr 32px 1fr;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-l1);
+    border: 1px solid var(--bd);
+    border-radius: 5px;
+    padding: 14px 20px;
+  }
+  .toolmap-goal {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tx-primary);
+  }
+  .toolmap-arrow {
+    font-size: 16px;
+    color: var(--c-line);
+    text-align: center;
+  }
+  .toolmap-tool {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--c-gold);
+    text-align: right;
+  }
+
+  /* ════════ THREE PLANS ════════ */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .plan-box {
+    background: var(--bg-l2);
+    border: 1.5px solid var(--bd-strong);
+    border-radius: 6px;
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .plan-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--c-titanium);
+  }
+  .plan-title {
+    margin-top: 4px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--c-black);
+    line-height: 1.35;
+  }
+  .plan-focus {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--c-gold);
+    border: 1px solid var(--c-line);
+    border-radius: 3px;
+    padding: 2px 9px;
+  }
+  .plan-desc {
+    margin-top: 11px;
+    font-size: 13.5px;
+    color: var(--tx-secondary);
+    line-height: 1.65;
+  }
+  .plan-divider { height: 1px; background: var(--bd); margin: 14px 0 12px; }
+  .plan-facts { display: flex; flex-direction: column; gap: 9px; }
+  .plan-fact {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--tx-secondary);
+    line-height: 1.55;
+  }
+  .plan-fact .plan-fact-label {
+    display: block;
+    font-weight: 700;
+    color: var(--c-black);
+    margin-bottom: 1px;
+  }
+
+  .plan-measures {
+    margin-top: 14px;
+    padding-top: 13px;
+    border-top: 1px solid var(--bd);
+  }
+  .plan-measures-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--tx-muted);
+    margin-bottom: 8px;
+  }
+  .plan-measures-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .plan-measure-chip {
+    background: var(--bg-l1);
+    border: 1px solid var(--bd-strong);
+    border-radius: 4px;
+    padding: 4px 9px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--tx-secondary);
+  }
+
+  /* ════════ ROADMAP ════════ */
+  .roadmap-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+  .rm-stage {
+    flex: 1;
+    background: var(--bg-l1);
+    border: 1.5px solid var(--bd-strong);
+    border-radius: 6px;
+    padding: 18px 22px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .rm-stage.is-current { border-color: var(--c-gold); background: #faf7ee; }
+  .rm-phase {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--c-gold);
+    margin-bottom: 6px;
+  }
+  .rm-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-black);
+    line-height: 1.35;
+  }
+  .rm-read {
+    margin-top: 9px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--tx-secondary);
+    line-height: 1.6;
+  }
+  .rm-why {
+    margin-top: 10px;
+    padding-top: 9px;
+    border-top: 1px solid var(--bd);
+    font-size: 12px;
+    color: var(--tx-muted);
+    line-height: 1.55;
+  }
+  .rm-why-label {
+    font-weight: 700;
+    color: var(--c-gold);
+  }
+  .rm-arrow {
+    flex-shrink: 0;
+    width: 42px;
+    position: relative;
+  }
+  .rm-arrow::before {
+    content: '';
+    position: absolute;
+    left: 6px; right: 14px;
+    top: 50%;
+    height: 1.5px;
+    background: var(--c-line);
+    transform: translateY(-50%);
+  }
+  .rm-arrow::after {
+    content: '';
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    width: 0; height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid var(--c-line);
+    transform: translateY(-50%);
+  }
+
+  /* ════════ BENEFITS TWO-COLUMN ════════ */
+  .benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .benefit-col {
+    border-radius: 6px;
+    padding: 18px 22px 20px;
+    border: 1px solid var(--bd);
+  }
+  .benefit-col:first-child { background: var(--c-gov-dim); }
+  .benefit-col:last-child  { background: var(--c-atop-dim); }
+
+  .benefit-col-header {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--bd-strong);
+  }
+  .benefit-col:first-child .benefit-col-header { color: var(--c-gov); }
+  .benefit-col:last-child  .benefit-col-header { color: var(--c-atop); }
+
+  .benefit-item {
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tx-primary);
+    line-height: 1.6;
+    padding: 6px 0 6px 18px;
+  }
+  .benefit-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .benefit-col:first-child .benefit-item::before { background: var(--c-gov); }
+  .benefit-col:last-child  .benefit-item::before { background: var(--c-atop); }
+
+  /* ════════ ROLE POSITIONING NOTE ════════ */
+  .role-note {
+    background: var(--bg-l1);
+    border: 1px solid var(--bd-strong);
+    border-left: 3px solid var(--c-gold);
+    border-radius: 4px;
+    padding: 16px 22px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .role-note-text {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--tx-secondary);
+    line-height: 1.7;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .role-note-text strong { color: var(--c-gold); font-weight: 700; }
+
+  /* ════════ PRIORITY TOPICS ════════ */
+  .priority-box {
+    background: var(--bg-l2);
+    border: 1.5px solid var(--bd-strong);
+    border-radius: 6px;
+    padding: 20px 26px 22px;
+    margin-bottom: 16px;
+  }
+  .priority-box:last-child { margin-bottom: 0; }
+  .priority-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .priority-rank {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--bg-card);
+    background: var(--c-gold);
+    padding: 3px 11px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .priority-title {
+    font-size: 17.5px;
+    font-weight: 700;
+    color: var(--c-black);
+    line-height: 1.35;
+  }
+  .priority-desc {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--tx-secondary);
+    line-height: 1.7;
+  }
+  .priority-chips {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .priority-divider { height: 1px; background: var(--bd); margin: 14px 0 12px; }
+  .priority-why {
+    font-size: 13px;
+    color: var(--tx-secondary);
+    line-height: 1.6;
+  }
+  .priority-why-label { font-weight: 700; color: var(--c-gold); }
+
+  /* ════════ POLICY TOOLS (目標 → 工具) ════════ */
+
+  /* ════════ NEXT STEPS TIMELINE ════════ */
+  .nextstep-list { display: flex; flex-direction: column; }
+  .nextstep-item {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--bd);
+  }
+  .nextstep-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .nextstep-item:first-child { padding-top: 0; }
+  .nextstep-term {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--c-gold);
+    padding-top: 1px;
+  }
+  .nextstep-text {
+    font-size: 14.5px;
+    color: var(--tx-primary);
+    line-height: 1.65;
+  }
+
+  /* ════════ DISCUSSION SUMMARY ════════ */
+  .summary-list { display: flex; flex-direction: column; }
+  .summary-item {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 16px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--bd);
+  }
+  .summary-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .summary-item:first-child { padding-top: 0; }
+  .summary-num {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--bg-card);
+    background: var(--c-gold);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .summary-text {
+    font-size: 14.5px;
+    color: var(--tx-primary);
+    line-height: 1.7;
+    padding-top: 3px;
+  }
+
+  /* ════════ CLOSING ════════ */
+  .closing-box {
+    background: var(--c-black);
+    border-radius: 6px;
+    padding: 26px 36px;
+    text-align: center;
+  }
+  .closing-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f4f3ef;
+    line-height: 1.75;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .closing-text .accent { color: var(--c-line); font-weight: 700; }
+
+  /* ════════ FOOTER ════════ */
+  .footer-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+  }
+  .attribution {
+    font-size: 12px;
+    color: var(--tx-muted);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 860px) {
+    .found-grid { grid-template-columns: repeat(2, 1fr); }
+    .whynow-row { grid-template-columns: repeat(2, 1fr); }
+    .res-grid { grid-template-columns: 1fr; }
+    .plan-grid { grid-template-columns: 1fr; }
+    .pos-row3 { grid-template-columns: 1fr; gap: 10px; }
+    .toolmap-row { grid-template-columns: 1fr; text-align: left; gap: 4px; }
+    .toolmap-tool { text-align: left; }
+    .toolmap-arrow { display: none; }
+    .ubureau-item { grid-template-columns: 28px 1fr; }
+    .nextstep-item { grid-template-columns: 64px 1fr; }
+    .summary-item { grid-template-columns: 26px 1fr; }
+    .decision-title { font-size: 21px; }
   }
 </style>
 </head>
 <body>
 
-<!-- THEME TOGGLE -->
-<button id="theme-toggle" aria-label="切換深色/淺色模式" title="切換配色">
-  <span class="toggle-icon">
-    <!-- sun icon (shown in dark mode) / moon icon (shown in light mode) -->
-    <svg id="toggle-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path id="toggle-path" d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
-    </svg>
-  </span>
-  <span class="toggle-label" id="toggle-label">Light</span>
-</button>
+<div class="page">
 
-<nav id="nav">
-  <div class="dot active" data-idx="0" title="討論定位"></div>
-  <div class="dot" data-idx="1" title="A-Top 目標"></div>
-  <div class="dot" data-idx="2" title="桃園合作價值"></div>
-  <div class="dot" data-idx="3" title="桃園市府關切"></div>
-  <div class="dot" data-idx="4" title="桃園資源"></div>
-  <div class="dot" data-idx="5" title="中央政策"></div>
-  <div class="dot" data-idx="6" title="三方交集"></div>
-  <div class="dot" data-idx="7" title="成長路徑"></div>
-  <div class="dot" data-idx="8" title="方案比較"></div>
-  <div class="dot" data-idx="9" title="今日收斂"></div>
-</nav>
-
-<!-- S1 -->
-<section class="slide" id="s1">
-  <span class="pg">01 / 10 &nbsp;·&nbsp; 討論定位</span>
-  <div class="tag">會前策略收斂導讀</div>
-  <h1>桃園市府合作議題<br>深度收斂導讀</h1>
-  <div class="sep"></div>
-  <p class="lead">從算力中心，到 AI 應用場域，再到智慧城市合作生態系</p>
-  <p class="lead" style="margin-top:0.8rem">本次討論不急著定義最終方案，而是先協助 AAM 釐清三件事：A-Top 想要建立什麼位置、桃園市府可能需要什麼成果、中央政策正在鼓勵什麼方向。再依據三方交集，整理較適合對外表達與後續推進的合作策略。</p>
-
-  <div class="q-list">
-    <div class="q-item"><span class="q-n">Q 1</span>A-Top 想建立什麼位置？</div>
-    <div class="q-item"><span class="q-n">Q 2</span>桃園市府需要什麼成果？</div>
-    <div class="q-item"><span class="q-n">Q 3</span>中央政策鼓勵什麼方向？</div>
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="main-title">桃園城市發展計畫：以 AI 產業內容支撐都市發展</div>
+    <div><span class="main-subtag">航空城 × 高鐵特區 × 捷運沿線發展導讀</span></div>
+    <div class="main-desc">桃園正進入航空城、高鐵特區與捷運沿線開發的關鍵階段。AI 相關產業是這個階段可以導入的新興產業內容之一，協助土地開發形成具體的產業聚落與都市機能——重點是城市發展本身，而不是算力或技術議題。</div>
   </div>
 
-  <p class="bottom-line">先釐清三方交集，再決定對外說法與行動方案。</p>
-</section>
-
-<!-- S2 -->
-<section class="slide" id="s2">
-  <span class="pg">02 / 10 &nbsp;·&nbsp; A-Top 目標</span>
-  <div class="tag">可討論方向</div>
-  <h2>A-Top 的目標，<br>可能不只是算力銷售</h2>
-  <div class="sep"></div>
-
-  <div class="card-grid g2">
-    <div class="card card-blue">
-      <div class="card-label">目標 01</div>
-      <div class="card-title">算力需求落地</div>
-      <div class="card-body">讓 AI IDC / GPU 算力有真實使用情境與需求來源。算力本身需要有人用、有場景撐，才能從資產轉化為產品。</div>
-    </div>
-    <div class="card card-teal">
-      <div class="card-label">目標 02</div>
-      <div class="card-title">產業生態系建立</div>
-      <div class="card-body">連結新創、系統商、場域業者、公部門與投資資源，讓算力不只是設備，而是平台入口——有人進來，就有生態系。</div>
-    </div>
-    <div class="card card-amber">
-      <div class="card-label">目標 03</div>
-      <div class="card-title">公部門合作背書</div>
-      <div class="card-body">若能與桃園市府形成合作案例，可強化 A-Top 對外招商、政策對接與產業合作的公信度，是很難用其他方式快速取得的背書。</div>
-    </div>
-    <div class="card card-purple">
-      <div class="card-label">目標 04</div>
-      <div class="card-title">平台角色升級</div>
-      <div class="card-body">從單純基礎建設或算力供應商，逐步延伸為 AI 應用驗證、產業升級與智慧城市服務的支撐平台——這個定位轉變值得認真思考。</div>
-    </div>
-  </div>
-
-  <div class="foot blue-accent">
-    <strong>待確認：</strong>A-Top 這次希望桃園先理解的是「算力資源」、「AI 平台能力」，還是「產業生態系推動能力」？這個答案，會影響後續切入角度的輕重，也影響 Brenda 要用什麼語言跟桃園開口。
-  </div>
-</section>
-
-<!-- S3 NEW: A-Top 為什麼要做桃園 -->
-<section class="slide" id="s3">
-  <span class="pg">03 / 10 &nbsp;·&nbsp; 桃園對 A-Top 的價值</span>
-  <div class="tag">策略推理</div>
-  <h2>桃園合作，對 A-Top<br>的真正價值是什麼？</h2>
-  <div class="sep"></div>
-
-  <div class="card-grid g2">
-    <div class="card card-blue">
-      <div class="card-label">價值 01</div>
-      <div class="card-title">AI 基礎設施示範據點</div>
-      <div class="card-body">讓 A-Top 不只是 AI IDC，而是有真實場域與應用案例的 AI 平台。「有人在這裡驗證過」，是招商與推廣時最有說服力的句子。</div>
-    </div>
-    <div class="card card-teal">
-      <div class="card-label">價值 02</div>
-      <div class="card-title">公部門合作背書</div>
-      <div class="card-body">建立地方政府合作案例，可提升後續招商與跨縣市推動的可信度。公部門背書很難買，但可以透過合作取得——這個資產的長期價值遠大於短期算力收入。</div>
-    </div>
-    <div class="card card-amber">
-      <div class="card-label">價值 03</div>
-      <div class="card-title">AI 應用驗證平台</div>
-      <div class="card-body">吸引新創、系統商、企業與應用團隊進駐，讓 A-Top 成為有人進來做事的平台，而不只是有算力的機房。平台的壁壘，比算力的壁壘高得多。</div>
-    </div>
-    <div class="card card-purple">
-      <div class="card-label">價值 04</div>
-      <div class="card-title">跨縣市複製能力</div>
-      <div class="card-body">桃園若能形成可運作的城市合作模式，新北、台中、高雄等縣市可複製同樣框架。第一個成功的城市樣板，是最難被複製的競爭優勢。</div>
-    </div>
-  </div>
-
-  <div class="foot blue-accent">
-    桃園的價值，不一定在於帶來多少 GPU 使用量。而在於是否能成為 A-Top 第一個可複製的城市合作樣板——這個問題值得在今天先討論清楚。
-  </div>
-</section>
-
-<!-- S4: 桃園市府關切 -->
-<section class="slide" id="s4-gov">
-  <span class="pg">04 / 10 &nbsp;·&nbsp; 桃園市府關切</span>
-  <div class="tag">初步判斷</div>
-  <h2>桃園市府需要的是<br>可被說明的政策成果</h2>
-  <div class="sep"></div>
-
-  <div class="card-grid g2">
-    <div class="card card-blue">
-      <div class="card-label">關切 01</div>
-      <div class="card-title">施政亮點</div>
-      <div class="card-body">是否能形成市長、局處、議會或媒體可理解的政策成果。地方政府每一個合作案，都需要有人能講得清楚「這在幹嘛、有什麼用」。</div>
-    </div>
-    <div class="card card-teal">
-      <div class="card-label">關切 02</div>
-      <div class="card-title">地方產業效益</div>
-      <div class="card-body">是否能帶動捷運沿線土地開發、航空城、工業區、物流、製造業與新創進駐。桃園的產業結構多元，效益說法要對得上。</div>
-    </div>
-    <div class="card card-amber">
-      <div class="card-label">關切 03</div>
-      <div class="card-title">民眾有感服務</div>
-      <div class="card-body">是否能轉化為交通、生活、安全、治理效率或公共服務品質的具體改善。「有感」是地方政府的核心指標，技術說法很難直接打動。</div>
-    </div>
-    <div class="card card-purple">
-      <div class="card-label">關切 04</div>
-      <div class="card-title">可執行、可驗證</div>
-      <div class="card-body">是否有明確場域、合作對象、短期驗證方式、KPI 與可衡量成果。市府內部若無法管理一個合作案，通常很難被推動。</div>
-    </div>
-  </div>
-
-  <div class="foot teal-accent">
-    <strong>初步判斷（供討論）：</strong>對地方政府而言，「算力」本身可能較難直接成為政策敘事。但如果算力能支撐新創驗證、產業升級與市政治理應用，就比較容易轉化為市府內部可被支持的合作理由——這個認知轉換，值得在對話前先建立共識。
-  </div>
-</section>
-
-<!-- S4 -->
-<section class="slide" id="s4">
-  <span class="pg">05 / 10 &nbsp;·&nbsp; 桃園地方資源</span>
-  <div class="tag">場域盤點</div>
-  <h2>桃園不是一般城市<br>而是 AI 應用驗證的複合型場域</h2>
-  <div class="sep"></div>
-
-  <div class="field-grid">
-    <div class="field-card">
-      <span class="field-icon">✈️</span>
-      <div class="field-name">桃園國際機場</div>
-      <div class="field-why">國門城市、旅運人流、跨境物流、安全治理與旅客服務，是具高度AI應用密度的複合場域。</div>
-    </div>
-    <div class="field-card">
-      <span class="field-icon">🚇</span>
-      <div class="field-name">捷運與沿線土地</div>
-      <div class="field-why">這次閉門會議核心議題。交通人流預測、場站管理、沿線土地開發與招商，是當前最直接的切入點。</div>
-    </div>
-    <div class="field-card">
-      <span class="field-icon">🏙️</span>
-      <div class="field-name">航空城</div>
-      <div class="field-why">大型長期開發計畫，適合包裝智慧園區、招商引資與城市級 AI 基礎設施概念。</div>
-    </div>
-    <div class="field-card">
-      <span class="field-icon">🏭</span>
-      <div class="field-name">工業區與製造業</div>
-      <div class="field-why">桃園製造業密度全台最高，具備 AI 品檢、能源管理、產能預測與智慧工廠升級的真實需求。</div>
-    </div>
-    <div class="field-card">
-      <span class="field-icon">📦</span>
-      <div class="field-name">物流倉儲</div>
-      <div class="field-why">物流節點優勢，可發展智慧倉儲、配送最佳化、供應鏈可視化與碳排管理，是可見度高的應用場域。</div>
-    </div>
-    <div class="field-card">
-      <span class="field-icon">🏛️</span>
-      <div class="field-name">市政治理</div>
-      <div class="field-why">桃園已有智慧治理與市政資料應用基礎，可作為 AI 場域驗證與跨局處應用的制度入口。</div>
-    </div>
-  </div>
-
-  <div class="unique-grid" style="margin-top:1rem">
-    <div class="unique-item"><span class="unique-check">✓</span><div><div class="unique-text">國際機場</div><div class="unique-sub">全台唯一國門城市，具跨境場域密度</div></div></div>
-    <div class="unique-item"><span class="unique-check">✓</span><div><div class="unique-text">航空城開發計畫</div><div class="unique-sub">長期大型開發，可包裝智慧園區願景</div></div></div>
-    <div class="unique-item"><span class="unique-check">✓</span><div><div class="unique-text">製造業聚落</div><div class="unique-sub">密度全台最高，AI 升級需求真實存在</div></div></div>
-    <div class="unique-item"><span class="unique-check">✓</span><div><div class="unique-text">物流樞紐</div><div class="unique-sub">節點優勢明確，場域可見度高</div></div></div>
-    <div class="unique-item"><span class="unique-check">✓</span><div><div class="unique-text">智慧城市基礎</div><div class="unique-sub">已有市政資料治理與智慧應用基礎</div></div></div>
-    <div class="unique-item"><span class="unique-check">✓</span><div><div class="unique-text">地方政治指標城市</div><div class="unique-sub">成果可見度高，市府推動意願相對積極</div></div></div>
-  </div>
-
-  <div class="foot teal-accent">
-    同時具備以上條件的城市非常少。因此桃園具備成為 AI Living Lab 起點城市的條件——這也是為什麼「為什麼是桃園」這個問題，對 A-Top 的策略方向值得認真回答。
-  </div>
-</section>
-
-<!-- S5 -->
-<section class="slide" id="s5">
-  <span class="pg">06 / 10 &nbsp;·&nbsp; 中央政策對位</span>
-  <div class="tag">政策背景</div>
-  <h2>中央要看的，不只是技術<br>而是可擴散的智慧應用服務</h2>
-  <div class="sep"></div>
-
-  <p class="body-text" style="max-width:64ch">數發部智慧城市計畫已從單純技術導向，轉向生活情境、跨域資料整合、公共服務轉型、場域驗證與可複製擴散。這代表 A-Top 若要與桃園形成合作，不宜只停留在「算力供應」敘事，而應該協助桃園形成可對接中央政策的 AI 應用場域與成果。</p>
-
-  <div class="kw-row">
-    <div class="kw">智慧生活圈</div>
-    <div class="kw">民眾有感服務</div>
-    <div class="kw">POC / POB</div>
-    <div class="kw">跨域資料交換</div>
-    <div class="kw">規模化擴散</div>
-  </div>
-
-  <div class="foot teal-accent">
-    <strong>值得留意的現實背景：</strong>桃園目前在地方政治格局中具有一定的指標性，地方政府通常會重視「可見成果、可被說明、可被擴散」的合作案。這不是選舉操作，而是理解公部門的運作邏輯——<strong>一個讓市府容易對內說明的合作框架，通常比技術規格更重要。</strong>
-  </div>
-</section>
-
-<!-- S6 -->
-<section class="slide" id="s6">
-  <span class="pg">07 / 10 &nbsp;·&nbsp; 三方交集</span>
-  <div class="tag">合作切入點</div>
-  <h2>合作機會在三方交集<br>而不是單點技術銷售</h2>
-  <div class="sep"></div>
-
-  <div class="venn-wrap">
-    <div class="venn-col">
-      <div class="venn-col-title" style="color:var(--blue)">A-Top 關心</div>
-      <div class="venn-item">算力落地與使用量</div>
-      <div class="venn-item">AI 生態系建立</div>
-      <div class="venn-item">公部門合作背書</div>
-      <div class="venn-item">平台角色升級</div>
-    </div>
-
-    <div class="venn-center">
-      <div class="venn-arrow">→</div>
-      <div class="venn-core">桃園<br>AI 應用<br>驗證場域</div>
-      <div class="venn-arrow">←</div>
-    </div>
-
-    <div class="venn-col">
-      <div class="venn-col-title" style="color:var(--teal)">桃園市府關心</div>
-      <div class="venn-item">施政亮點與成果</div>
-      <div class="venn-item">產業效益</div>
-      <div class="venn-item">民眾有感服務</div>
-      <div class="venn-item">可執行可驗證</div>
-    </div>
-  </div>
-
-  <div class="card card-amber" style="max-width:820px;margin-top:0.3rem">
-    <div class="card-label">中央政策方向</div>
-    <div class="card-body" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.2rem">
-      <span style="background:var(--amber-dim);border:1px solid var(--amber-bd);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.8rem;color:var(--amber)">智慧生活圈</span>
-      <span style="background:var(--amber-dim);border:1px solid var(--amber-bd);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.8rem;color:var(--amber)">POC / POB</span>
-      <span style="background:var(--amber-dim);border:1px solid var(--amber-bd);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.8rem;color:var(--amber)">跨域資料交換</span>
-      <span style="background:var(--amber-dim);border:1px solid var(--amber-bd);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.8rem;color:var(--amber)">規模化擴散</span>
-    </div>
-  </div>
-
-  <div class="foot blue-accent" style="margin-top:0.8rem">
-    如果 A-Top 只談算力，容易落入單點採購的框架。如果結合桃園場域與中央智慧城市政策，就有機會形成「算力支撐應用、應用形成成果、成果帶動擴散」的合作故事——這個故事對三方都更容易說得通。
-  </div>
-</section>
-
-<!-- S8 NEW: A-Top 成長路徑 -->
-<section class="slide" id="s8">
-  <span class="pg">08 / 10 &nbsp;·&nbsp; A-Top 成長路徑</span>
-  <div class="tag">策略定位討論</div>
-  <h2>A-Top 未來想成為什麼？<br>三種可能的成長路徑</h2>
-  <div class="sep"></div>
-
-  <div class="path-grid">
-    <div class="path-card" style="border-top:3px solid var(--blue)">
-      <div class="path-badge" style="color:var(--blue)">路徑 A</div>
-      <div class="path-title">算力供應商</div>
-      <div class="path-tags">
-        <span class="path-tag">GPU</span>
-        <span class="path-tag">AI IDC</span>
-        <span class="path-tag">機房</span>
+  <!-- STARTING POINT -->
+  <section class="block">
+    <div class="start-wrap">
+      <div class="start-box">
+        <div class="start-tag">出發點</div>
+        <div class="start-title">桃園都市發展正需要新的產業內容</div>
+        <div class="start-read">航空城、高鐵特區與捷運沿線土地開發，需要具體的產業聚落與都市機能，而不只是招商口號或土地標售。</div>
       </div>
-      <div class="path-pros">
-        <div class="path-pros-label">優點</div>
-        <div class="path-pros-text">定位清晰，容易被理解，可快速說明產品。</div>
+    </div>
+  </section>
+
+  <!-- FOUNDATION: 城市發展條件 -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">基礎</div>
+      <div class="section-title">桃園的城市發展條件</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="found-grid">
+      <div class="found-box">
+        <div class="found-title">國際機場</div>
+        <div class="found-sub">國門城市與跨境服務入口</div>
       </div>
-      <div class="path-cons">
-        <div class="path-cons-label">風險</div>
-        <div class="path-cons-text">算力容易被商品化，競爭壁壘相對薄弱，長期容易陷入價格競爭。</div>
+      <div class="found-box">
+        <div class="found-title">航空城</div>
+        <div class="found-sub">大型產業與土地開發計畫</div>
+      </div>
+      <div class="found-box">
+        <div class="found-title">捷運沿線</div>
+        <div class="found-sub">TOD 發展與產業聚落形成機會</div>
+      </div>
+      <div class="found-box">
+        <div class="found-title">高鐵特區</div>
+        <div class="found-sub">企業總部與人才匯聚條件</div>
+      </div>
+      <div class="found-box">
+        <div class="found-title">製造業聚落</div>
+        <div class="found-sub">產業升級需求最成熟的腹地</div>
+      </div>
+      <div class="found-box">
+        <div class="found-title">物流供應鏈中心</div>
+        <div class="found-sub">區域物流與產業聚落應用場域</div>
+      </div>
+    </div>
+    <div class="found-statement">桃園的價值不在單一場域，而在於同時具備交通、物流、製造、航空與城市治理等多元條件，<strong>這些條件本身就是承接新產業內容、形成產業聚落的良好基礎。</strong></div>
+    <div class="role-note" style="margin-top:18px;margin-bottom:0;">
+      <div class="role-note-text">桃園是少數同時擁有國際機場、航空城、高鐵、捷運、物流與製造業基礎的城市。這些條件不只是交通優勢，更代表桃園具備承接新興產業內容、形成產業聚落與建立新都市機能的潛力。因此 AI 並非單一技術議題，<strong>而是桃園下一階段城市發展可能的重要產業內容之一。</strong></div>
+    </div>
+  </section>
+
+  <!-- WHY NOW -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">時機</div>
+      <div class="section-title">為什麼是現在？</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="whynow-row">
+      <div class="whynow-item">
+        <div class="whynow-label">航空城推動中</div>
+        <div class="whynow-sub">土地開發進入關鍵階段，產業內容尚待補位</div>
+      </div>
+      <div class="whynow-item">
+        <div class="whynow-label">高鐵特區發展中</div>
+        <div class="whynow-sub">企業總部與人才聚集需求逐步成形</div>
+      </div>
+      <div class="whynow-item">
+        <div class="whynow-label">AI 產業快速成長</div>
+        <div class="whynow-sub">企業與新創正在尋找場域落地與驗證</div>
+      </div>
+      <div class="whynow-item">
+        <div class="whynow-label">中央政策支持</div>
+        <div class="whynow-sub">智慧城市與跨域應用為現階段政策重點</div>
+      </div>
+    </div>
+    <div class="role-note" style="margin-top:18px;margin-bottom:0;">
+      <div class="role-note-text"><strong>桃園的獨特優勢：</strong>桃園不是單純的交通樞紐，而是北台灣人口、產業與資本外溢的重要承接城市。近年大量人口移入桃園，但工作與產業活動仍與雙北高度連結，因此桃園具備形成新產業聚落與承接產業外溢需求的特殊條件。</div>
+    </div>
+  </section>
+
+  <!-- URBAN BUREAU PERSPECTIVE -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">局處視角</div>
+      <div class="section-title">都市發展局視角</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="section-lead">這個計畫對都市發展局的意義，不是招商成果，而是土地開發、都市機能與城市定位本身。</div>
+    <div class="ubureau-box">
+      <div class="ubureau-list">
+        <div class="ubureau-item">
+          <div class="ubureau-num">1</div>
+          <div>
+            <div class="ubureau-q">為什麼對土地開發有幫助？</div>
+            <div class="ubureau-a">AI 相關企業與新創進駐需要實體場域，可優先導入航空城、高鐵特區或捷運沿線開發案，作為土地開發的新產業內容，提升土地使用效益與開發吸引力。</div>
+          </div>
+        </div>
+        <div class="ubureau-item">
+          <div class="ubureau-num">2</div>
+          <div>
+            <div class="ubureau-q">為什麼有助於形成新都市機能？</div>
+            <div class="ubureau-a">AI 產業聚落需要辦公、研發、展示與生活配套機能，有機會帶動複合型都市機能規劃，而非單純住宅或商辦開發。</div>
+          </div>
+        </div>
+        <div class="ubureau-item">
+          <div class="ubureau-num">3</div>
+          <div>
+            <div class="ubureau-q">為什麼有助於產業聚落形成？</div>
+            <div class="ubureau-a">在特定場域集中導入相關企業與新創，可形成產業聚落效應，吸引上下游廠商與服務業者進駐，強化區域產業密度。</div>
+          </div>
+        </div>
+        <div class="ubureau-item">
+          <div class="ubureau-num">4</div>
+          <div>
+            <div class="ubureau-q">為什麼有助於吸引人才進駐？</div>
+            <div class="ubureau-a">新興產業內容與優質工作機會，是吸引青年與專業人才在地居住、就業的重要條件，有助於降低人口外流。</div>
+          </div>
+        </div>
+        <div class="ubureau-item">
+          <div class="ubureau-num">5</div>
+          <div>
+            <div class="ubureau-q">為什麼有助於提升桃園城市定位？</div>
+            <div class="ubureau-a">透過具體可見的產業聚落與應用案例，桃園可從工業與交通門戶城市，逐步建立具備新興產業內容的城市形象。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">資源</div>
+      <div class="section-title">雙方可投入資源</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="res-grid">
+      <div class="res-col res-gov">
+        <div class="res-col-header">桃園市府可投入</div>
+        <div class="res-item"><strong>土地開發場域</strong>：捷運沿線、高鐵、航空城</div>
+        <div class="res-item"><strong>產業政策工具</strong>：招商、補助、園區推動</div>
+        <div class="res-item"><strong>市政治理需求</strong>：交通、物流、製造、公共服務</div>
+        <div class="res-item"><strong>公部門協調能力</strong>：局處整合、中央計畫對接</div>
+      </div>
+      <div class="res-col res-atop">
+        <div class="res-col-header">AAM / 睿亞團隊可投入</div>
+        <div class="res-item"><strong>土地開發與投資視角</strong>：理解都市發展、場域經營與長期投資邏輯</div>
+        <div class="res-item"><strong>A-Top AI 基礎設施</strong>：AI IDC、算力中心、主權雲與資料治理能力</div>
+        <div class="res-item"><strong>產業生態系協同能力</strong>：創代、緯創、緯謙、SI、新創與企業應用夥伴</div>
+        <div class="res-item"><strong>長期營運與平台推動</strong>：協助場域從建設、導入到後續擴散</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITIONING DIAGRAM -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">定位</div>
+      <div class="section-title">AAM / 睿亞在桃園城市發展中的定位</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="section-lead">城市發展計畫往往不是單一技術導入，而是需要同時整合土地開發、產業內容、基礎設施、投資資源、公部門需求與長期營運。下圖呈現的不是單一技術提供者的角色，而是 AAM / 睿亞在整個生態系中所在的位置。</div>
+
+    <div class="pos-diagram">
+      <div class="pos-node">
+        <div class="pos-node-label">桃園市政府</div>
+        <div class="pos-node-sub">土地・政策・治理需求</div>
+      </div>
+
+      <div class="pos-vline"></div>
+
+      <div class="pos-hub">
+        <div class="pos-hub-label">AAM / 睿亞</div>
+        <div class="pos-hub-sub">長期投資能力・土地開發視角・AI 基礎設施・生態系整合能力</div>
+      </div>
+
+      <div class="pos-fan"><div class="pos-fan-drops"><div class="drop"></div><div class="drop"></div><div class="drop"></div></div></div>
+
+      <div class="pos-row3">
+        <div class="pos-node">
+          <div class="pos-node-label">企業</div>
+          <div class="pos-node-sub">技術・解決方案・產品</div>
+        </div>
+        <div class="pos-node">
+          <div class="pos-node-label">新創</div>
+          <div class="pos-node-sub">創新應用</div>
+        </div>
+        <div class="pos-node">
+          <div class="pos-node-label">AI 基礎設施</div>
+          <div class="pos-node-sub">算力・主權雲・資料治理</div>
+        </div>
+      </div>
+
+      <div class="pos-converge"><div class="pos-converge-drops"><div class="drop"></div><div class="drop"></div><div class="drop"></div></div></div>
+      <div class="pos-converge-vline"></div>
+
+      <div class="pos-node">
+        <div class="pos-node-label">應用場域</div>
+        <div class="pos-node-sub">產業聚落・城市治理應用</div>
       </div>
     </div>
 
-    <div class="path-card" style="border-top:3px solid var(--teal)">
-      <div class="path-badge" style="color:var(--teal)">路徑 B</div>
-      <div class="path-title">AI 平台提供者</div>
-      <div class="path-tags">
-        <span class="path-tag">平台</span>
-        <span class="path-tag">服務</span>
-        <span class="path-tag">應用</span>
+    <div class="pos-statement" style="margin-left:auto;margin-right:auto;text-align:center;">重點不是能力，而是位置。AAM / 睿亞同時位於土地開發、投資資源、AI 基礎設施與產業生態系的交會點，因此能同時串接市府、企業、新創與應用場域，形成完整的城市發展生態系。<strong>這種位置帶來的整合能力，比單一技術能力更重要——AAM / 睿亞不是供應商，而是整合推動者。</strong></div>
+  </section>
+
+  <!-- THREE PLANS -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">方案</div>
+      <div class="section-title">可優先討論的城市發展方案</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="plan-grid">
+      <div class="plan-box">
+        <div class="plan-num">方案 01</div>
+        <div class="plan-title">AI 產業聚落示範區</div>
+        <div class="plan-focus">土地開發 × 產業內容</div>
+        <div class="plan-desc">以航空城、高鐵特區或捷運沿線開發區域為核心，由 AAM / 睿亞團隊整合土地、產業夥伴與 AI 基礎設施，協助形成新型態產業聚落。</div>
+        <div class="plan-divider"></div>
+        <div class="plan-facts">
+          <div class="plan-fact"><span class="plan-fact-label">對土地開發的意義</span>為大型開發案注入具體產業內容，提升土地開發吸引力</div>
+          <div class="plan-fact"><span class="plan-fact-label">對都市機能的幫助</span>帶動研發、辦公與生活機能複合規劃</div>
+          <div class="plan-fact"><span class="plan-fact-label">推進方式</span>可先選定單一場域試辦，逐步擴大</div>
+        </div>
+        <div class="plan-measures">
+          <div class="plan-measures-label">可能配套措施</div>
+          <div class="plan-measures-chips">
+            <span class="plan-measure-chip">AI 算力優惠券</span>
+            <span class="plan-measure-chip">新創算力試用額度</span>
+            <span class="plan-measure-chip">AI 企業進駐誘因</span>
+            <span class="plan-measure-chip">AI 場域驗證補助</span>
+          </div>
+        </div>
       </div>
-      <div class="path-pros">
-        <div class="path-pros-label">優點</div>
-        <div class="path-pros-text">價值鏈更高，具備黏著性，可形成服務與應用的差異化。</div>
+      <div class="plan-box">
+        <div class="plan-num">方案 02</div>
+        <div class="plan-title">智慧城市應用驗證場域</div>
+        <div class="plan-focus">城市治理成果</div>
+        <div class="plan-desc">以交通、物流、公共服務等城市治理議題為核心，由 AAM / 睿亞團隊整合應用場景設計與 AI 基礎設施，建立可展示的驗證場域。</div>
+        <div class="plan-divider"></div>
+        <div class="plan-facts">
+          <div class="plan-fact"><span class="plan-fact-label">對土地開發的意義</span>可在既有場域導入應用，不需額外大規模開發</div>
+          <div class="plan-fact"><span class="plan-fact-label">對都市機能的幫助</span>提升既有都市機能的運作效率與服務品質</div>
+          <div class="plan-fact"><span class="plan-fact-label">推進方式</span>可從單一治理場景開始驗證，再擴散至其他場域</div>
+        </div>
+        <div class="plan-measures">
+          <div class="plan-measures-label">可能配套措施</div>
+          <div class="plan-measures-chips">
+            <span class="plan-measure-chip">POC / POB 示範補助</span>
+            <span class="plan-measure-chip">AI 應用場域徵案</span>
+            <span class="plan-measure-chip">局處合作驗證機制</span>
+            <span class="plan-measure-chip">城市治理創新競賽</span>
+          </div>
+        </div>
       </div>
-      <div class="path-cons">
-        <div class="path-cons-label">風險</div>
-        <div class="path-cons-text">需要更多產品與營運能力，不是單純賣算力就能達成。</div>
+      <div class="plan-box">
+        <div class="plan-num">方案 03</div>
+        <div class="plan-title">區域數位韌性與公共服務平台</div>
+        <div class="plan-focus">城市治理能力</div>
+        <div class="plan-desc">由 AAM / 睿亞團隊整合 AI 基礎設施、資料治理與長期營運能力，支撐未來城市治理、公共服務與跨域合作需求。</div>
+        <div class="plan-divider"></div>
+        <div class="plan-facts">
+          <div class="plan-fact"><span class="plan-fact-label">對土地開發的意義</span>屬於長期城市治理基礎能力，非單一土地開發案</div>
+          <div class="plan-fact"><span class="plan-fact-label">對都市機能的幫助</span>強化跨局處協作與公共服務韌性</div>
+          <div class="plan-fact"><span class="plan-fact-label">推進方式</span>需跨局處資源整合，適合中長期推動</div>
+        </div>
+        <div class="plan-measures">
+          <div class="plan-measures-label">可能配套措施</div>
+          <div class="plan-measures-chips">
+            <span class="plan-measure-chip">區域備援算力機制</span>
+            <span class="plan-measure-chip">公部門資料治理平台</span>
+            <span class="plan-measure-chip">跨局處資料共享</span>
+            <span class="plan-measure-chip">公共服務協作平台</span>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="path-card" style="border-top:3px solid var(--amber)">
-      <div class="path-badge" style="color:var(--amber)">路徑 C</div>
-      <div class="path-title">AI 生態系推動者</div>
-      <div class="path-tags">
-        <span class="path-tag">政府</span>
-        <span class="path-tag">產業</span>
-        <span class="path-tag">新創</span>
-        <span class="path-tag">場域</span>
+  <!-- PRIORITY TOPICS -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">議題</div>
+      <div class="section-title">建議優先討論議題</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="section-lead">從城市發展角度，聚焦後續最具可行性的合作議題。</div>
+
+    <div class="priority-box">
+      <div class="priority-head">
+        <span class="priority-rank">優先 1</span>
+        <span class="priority-title">航空城 AI 產業內容導入</span>
       </div>
-      <div class="path-pros">
-        <div class="path-pros-label">優點</div>
-        <div class="path-pros-text">最容易形成長期價值與競爭壁壘，平台生態系一旦建立，難以被複製。</div>
+      <div class="priority-desc">航空城是桃園最大的開發計畫之一。未來除了土地開發本身，更需要具體產業內容支撐。可評估以下方向作為產業內容導入選項：</div>
+      <div class="priority-chips">
+        <span class="plan-measure-chip">AI 產業聚落</span>
+        <span class="plan-measure-chip">AI 企業總部</span>
+        <span class="plan-measure-chip">AI 新創基地</span>
+        <span class="plan-measure-chip">AI 基礎設施</span>
       </div>
-      <div class="path-cons">
-        <div class="path-cons-label">風險</div>
-        <div class="path-cons-text">需要時間、資源與夥伴關係累積，不是短期可以快速交付的成果。</div>
+      <div class="priority-divider"></div>
+      <div class="priority-why"><span class="priority-why-label">為什麼優先：</span>土地規模最大，與都市發展局核心職責最直接相關</div>
+    </div>
+
+    <div class="priority-box">
+      <div class="priority-head">
+        <span class="priority-rank">優先 2</span>
+        <span class="priority-title">捷運沿線示範場域</span>
       </div>
+      <div class="priority-desc">選定單一捷運站區或重劃區，建立 AI 應用示範場域，例如交通、物流、公共服務、智慧治理等情境。</div>
+      <div class="priority-divider"></div>
+      <div class="priority-why"><span class="priority-why-label">為什麼優先：</span>最快形成可見成果，適合作為示範案例</div>
     </div>
-  </div>
 
-  <div class="foot amber-accent">
-    本次桃園合作的討論重點，可能不只是增加多少算力需求，而是思考：A-Top 是否有機會透過桃園，建立第一個可複製的 AI 城市合作模式——這個問題，會影響今天決定哪種切入方式更值得優先推進。
-  </div>
-</section>
-
-<!-- S9 -->
-<section class="slide" id="s9">
-  <span class="pg">09 / 10 &nbsp;·&nbsp; 方案比較</span>
-  <div class="tag">優先序討論</div>
-  <h2>可行方案不只一種<br>需要依照啟動速度與政策高度排序</h2>
-  <div class="sep"></div>
-
-  <div class="matrix">
-    <div class="mx-head-row">
-      <div class="mx-cell head">方案</div>
-      <div class="mx-cell head">定位</div>
-      <div class="mx-cell head">優點</div>
-      <div class="mx-cell head">限制</div>
-      <div class="mx-cell head">優先序</div>
-    </div>
-    <!-- eval dimensions sub-header -->
-    <div class="mx-eval-row">
-      <div class="mx-eval-cell"></div>
-      <div class="mx-eval-cell">啟動速度 · 執行難度</div>
-      <div class="mx-eval-cell">政策高度</div>
-      <div class="mx-eval-cell">可複製性</div>
-      <div class="mx-eval-cell"></div>
-    </div>
-    <div class="mx-data-row">
-      <div class="mx-cell"><div class="mx-label">方案 A<div class="mx-sub">算力優惠券</div></div></div>
-      <div class="mx-cell"><span class="eval-dot eval-hi"></span>啟動快・執行容易。提供桃園新創或企業使用 A-Top 算力資源的優惠方案，門檻最低。</div>
-      <div class="mx-cell"><span class="eval-dot eval-lo"></span>政策高度偏低。容易被視為資源補助，難以形成政策敘事或市府對外亮點。</div>
-      <div class="mx-cell"><span class="eval-dot eval-mid"></span>模式簡單可複製，但複製後差異性低，不易形成競爭壁壘。</div>
-      <div class="mx-cell"><span class="priority-pill pill-short">短期入口</span></div>
-    </div>
-    <div class="mx-data-row">
-      <div class="mx-cell"><div class="mx-label">方案 B<div class="mx-sub">新創驗證基地</div></div></div>
-      <div class="mx-cell"><span class="eval-dot eval-mid"></span>啟動中等・需要設計徵案與評選機制。但一旦啟動，可形成持續案例流。</div>
-      <div class="mx-cell"><span class="eval-dot eval-hi"></span>政策高度高。可對接數發部智慧城市計畫，形成新創輔導與場域驗證的完整敘事。</div>
-      <div class="mx-cell"><span class="eval-dot eval-hi"></span>模式可複製到其他縣市，是建立城市合作樣板的核心機制。</div>
-      <div class="mx-cell"><span class="priority-pill pill-mid">中期主推</span></div>
-    </div>
-    <div class="mx-data-row">
-      <div class="mx-cell"><div class="mx-label">方案 C<div class="mx-sub">產業 AI 升級</div></div></div>
-      <div class="mx-cell"><span class="eval-dot eval-mid"></span>需找到示範企業，冷啟動有一定難度，但桃園產業密度高，需求相對真實。</div>
-      <div class="mx-cell"><span class="eval-dot eval-mid"></span>貼近地方產業效益，市府容易理解。政策高度中等，可與 B 搭配形成完整敘事。</div>
-      <div class="mx-cell"><span class="eval-dot eval-hi"></span>產業 AI 升級模式在其他工業城市有高度可複製性。</div>
-      <div class="mx-cell"><span class="priority-pill pill-both">中短期並行</span></div>
-    </div>
-    <div class="mx-data-row">
-      <div class="mx-cell"><div class="mx-label">方案 D<div class="mx-sub">AI Living Lab</div></div></div>
-      <div class="mx-cell"><span class="eval-dot eval-lo"></span>啟動慢・需跨局處協調，不宜作為短期承諾，但可作為持續溝通的長期框架。</div>
-      <div class="mx-cell"><span class="eval-dot eval-hi"></span>政策高度最高。可形成城市品牌，對接中央政策，成為 A-Top 最重要的外部敘事。</div>
-      <div class="mx-cell"><span class="eval-dot eval-hi"></span>若桃園成功，可作為跨縣市複製的完整城市合作模式，是最高槓桿的方案。</div>
-      <div class="mx-cell"><span class="priority-pill pill-long">長期主軸</span></div>
-    </div>
-  </div>
-
-  <div class="foot amber-accent">
-    <strong>排序依據：</strong>方案 A 啟動快但壁壘低，適合作為接觸點而非主軸；方案 B、C 在執行難度與政策高度之間取得平衡，是形成案例的核心；方案 D 政策高度與可複製性最高，適合作為長期對外敘事——而不是第一句話。
-  </div>
-</section>
-
-<!-- S10 -->
-<section class="slide" id="s10">
-  <span class="pg">10 / 10 &nbsp;·&nbsp; 今日收斂</span>
-  <div class="tag">待確認事項</div>
-  <h2>今天先不用定案<br>但要收斂三件事</h2>
-  <div class="sep"></div>
-
-  <div class="big-q-list">
-    <div class="big-q">
-      <div class="big-q-head">
-        <span class="big-q-n">Q 1</span>
-        <span class="big-q-title">這次對桃園市府要先釋放哪一層訊息？</span>
+    <div class="priority-box">
+      <div class="priority-head">
+        <span class="priority-rank">優先 3</span>
+        <span class="priority-title">區域數位韌性與公共服務平台</span>
       </div>
-      <div class="option-row">
-        <span class="opt">算力資源</span>
-        <span class="opt">AI 平台能力</span>
-        <span class="opt">產業生態系推動</span>
-        <span class="opt">城市 AI 應用場域</span>
+      <div class="priority-desc">評估資料治理、公共服務、跨局處協作、區域韌性能力等長期發展需求。</div>
+      <div class="priority-divider"></div>
+      <div class="priority-why"><span class="priority-why-label">為什麼第三：</span>需要跨局處協調，適合作為中長期規劃</div>
+    </div>
+  </section>
+
+  <!-- DECISION FOCUS -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">收斂</div>
+      <div class="section-title">建議優先啟動議題</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="decision-box">
+      <div class="decision-label">建議優先推動</div>
+      <div class="decision-title">航空城 AI 產業內容導入</div>
+      <div class="decision-reasons">
+        <div class="decision-reason"><span class="decision-reason-num">1</span><span>與都市發展局權責最直接相關</span></div>
+        <div class="decision-reason"><span class="decision-reason-num">2</span><span>土地規模最大</span></div>
+        <div class="decision-reason"><span class="decision-reason-num">3</span><span>最容易形成產業聚落</span></div>
+        <div class="decision-reason"><span class="decision-reason-num">4</span><span>最容易形成政策亮點</span></div>
+        <div class="decision-reason"><span class="decision-reason-num">5</span><span>可延伸至捷運沿線與其他場域</span></div>
       </div>
     </div>
+  </section>
 
-    <div class="big-q">
-      <div class="big-q-head">
-        <span class="big-q-n">Q 2</span>
-        <span class="big-q-title">桃園哪個場域最適合先包裝？</span>
+  <!-- POLICY TOOLS -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">工具</div>
+      <div class="section-title">可進一步評估的政策工具</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="section-lead">作為推動產業聚落、應用驗證與城市發展之配套工具。</div>
+    <div class="toolmap-list">
+      <div class="toolmap-row">
+        <div class="toolmap-goal">吸引 AI 企業進駐</div>
+        <div class="toolmap-arrow">→</div>
+        <div class="toolmap-tool">AI 算力優惠券</div>
       </div>
-      <div class="option-row">
-        <span class="opt">捷運沿線</span>
-        <span class="opt">航空城</span>
-        <span class="opt">工業區</span>
-        <span class="opt">物流</span>
-        <span class="opt">市政治理</span>
-        <span class="opt">新創驗證</span>
+      <div class="toolmap-row">
+        <div class="toolmap-goal">培養 AI 新創</div>
+        <div class="toolmap-arrow">→</div>
+        <div class="toolmap-tool">新創算力試用計畫</div>
+      </div>
+      <div class="toolmap-row">
+        <div class="toolmap-goal">增加場域案例</div>
+        <div class="toolmap-arrow">→</div>
+        <div class="toolmap-tool">場域驗證補助</div>
+      </div>
+      <div class="toolmap-row">
+        <div class="toolmap-goal">強化企業長期進駐意願</div>
+        <div class="toolmap-arrow">→</div>
+        <div class="toolmap-tool">AI 企業進駐誘因</div>
       </div>
     </div>
+  </section>
 
-    <div class="big-q">
-      <div class="big-q-head">
-        <span class="big-q-n">Q 3</span>
-        <span class="big-q-title">下週閉門會議要帶去的是哪種說法？</span>
+  <!-- NEXT STEPS -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">下一步</div>
+      <div class="section-title">桃園下一步可以開始什麼？</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="nextstep-list">
+      <div class="nextstep-item">
+        <div class="nextstep-term">短期</div>
+        <div class="nextstep-text">選定航空城或捷運沿線示範場域，形成第一個城市發展案例。</div>
       </div>
-      <div class="option-row">
-        <span class="opt">短期算力優惠方案</span>
-        <span class="opt">AI 新創驗證基地</span>
-        <span class="opt">產業 AI 升級方案</span>
-        <span class="opt">桃園 AI Living Lab 願景</span>
+      <div class="nextstep-item">
+        <div class="nextstep-term">中期</div>
+        <div class="nextstep-text">建立產業夥伴聯盟與場域驗證機制，逐步形成產業聚落。</div>
+      </div>
+      <div class="nextstep-item">
+        <div class="nextstep-term">長期</div>
+        <div class="nextstep-text">建立桃園 AI 產業內容發展模式，形成可持續擴散的城市發展生態系。</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="rec-block">
-    <div class="rec-title">初步建議方向（供討論）</div>
-    <p>可以先不急著把 A-Top 包裝成算力供應商，而是讓桃園理解 A-Top 能協助其建立 AI 應用驗證場域。算力作為支撐應用成果的基礎能力，讓市府看到的是「桃園可以做到什麼」，而不是「我們在賣什麼」——這樣的說法，對後續持續推進也比較有彈性。</p>
-  </div>
-</section>
+  <!-- DISCUSSION SUMMARY -->
+  <section class="block">
+    <div class="section-title-row">
+      <div class="section-tag">摘要</div>
+      <div class="section-title">討論重點摘要</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="section-lead">快速掌握這份文件想傳達的核心觀點。</div>
+    <div class="summary-list">
+      <div class="summary-item">
+        <div class="summary-num">1</div>
+        <div class="summary-text">桃園目前最重要的議題，不是算力本身，而是土地開發後需要什麼產業內容。</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">2</div>
+        <div class="summary-text">AI 可以作為航空城、高鐵特區與捷運沿線發展的新興產業內容。</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">3</div>
+        <div class="summary-text">AAM / 睿亞的角色，是整合土地開發、投資、AI 基礎設施與產業夥伴。</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">4</div>
+        <div class="summary-text">短期可先從示範場域開始，中期形成產業聚落，長期建立城市發展模式。</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">5</div>
+        <div class="summary-text">AI 算力優惠券、新創試用額度、場域驗證補助等，可作為政策工具，但不應成為方案主體。</div>
+      </div>
+    </div>
+  </section>
 
-<script>
-  /* ── NAV DOTS ── */
-  const slides = document.querySelectorAll('.slide');
-  const dots   = document.querySelectorAll('.dot');
+  <!-- CLOSING -->
+  <section class="block">
+    <div class="closing-box">
+      <div class="closing-text">本文件目的在於協助各方聚焦後續討論方向，<span class="accent">而非提出最終方案。</span></div>
+    </div>
+    <div class="footer-row">
+      <div class="attribution">AAM / A-Top　桃園市府合作討論參考</div>
+    </div>
+  </section>
 
-  dots.forEach(d => {
-    d.addEventListener('click', () => {
-      slides[+d.dataset.idx].scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+</div>
 
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const i = [...slides].indexOf(e.target);
-        dots.forEach((d, j) => d.classList.toggle('active', i === j));
-      }
-    });
-  }, { threshold: 0.5 });
-
-  slides.forEach(s => io.observe(s));
-
-  /* ── THEME TOGGLE ── */
-  const root    = document.documentElement;
-  const btn     = document.getElementById('theme-toggle');
-  const label   = document.getElementById('toggle-label');
-  const svgPath = document.getElementById('toggle-path');
-
-  // sun path (for light mode indicator) / moon path (for dark mode indicator)
-  const moonPath = 'M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z';
-  const sunPath  = 'M12 3v1m0 16v1M4.22 4.22l.7.7m12.16 12.16.7.7M3 12h1m16 0h1M4.92 19.07l.7-.7M18.36 5.64l.7-.7M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z';
-
-  function applyTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    if (theme === 'light') {
-      label.textContent = 'Light';
-      svgPath.setAttribute('d', moonPath);   // moon = "switch to dark"
-    } else {
-      label.textContent = 'Dark';
-      svgPath.setAttribute('d', sunPath);    // sun = "switch to light"
-    }
-  }
-
-  // Default: light
-  applyTheme('light');
-
-  btn.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme');
-    applyTheme(current === 'light' ? 'dark' : 'light');
-  });
-</script>
 </body>
 </html>
